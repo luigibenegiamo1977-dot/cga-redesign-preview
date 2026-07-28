@@ -5003,7 +5003,7 @@
       top: 24px !important;
       left: 24px !important;
       right: 24px !important;
-      z-index: 6;
+      z-index: 120 !important;
       display: grid !important;
       grid-template-columns: 150px minmax(0, 1fr) !important;
       align-items: center !important;
@@ -5015,6 +5015,11 @@
       box-shadow: 0 20px 55px rgba(0, 0, 0, .28) !important;
       text-decoration: none !important;
       cursor: pointer;
+      pointer-events: auto !important;
+    }
+
+    .hero-brand .solaros-app-logo,
+    .hero-brand .solaros-app-logo * {
       pointer-events: auto !important;
     }
 
@@ -5220,7 +5225,7 @@
           </div>
         </div>
         <div class="hero-brand">
-          <a class="solaros-app-logo" href="solaros.html" aria-label="Apri SolarOS">
+          <a class="solaros-app-logo" href="solaros.html" onclick="event.preventDefault(); window.location.href='solaros.html';" aria-label="Apri SolarOS">
             <img src="assets/solaros-logo-light-bg.png" alt="SolarOS">
             <div>
               <strong>Accesso SolarOS</strong>
