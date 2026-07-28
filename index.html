@@ -5931,6 +5931,13 @@
       });
     });
 
+    document.querySelectorAll(".solaros-login, .solaros-app-logo").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = "solaros.html";
+      });
+    });
+
     applyLanguage(currentLanguage);
   </script>
 </body>
