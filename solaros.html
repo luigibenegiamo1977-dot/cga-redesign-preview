@@ -1,0 +1,2323 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SolarOS | CGA Srl</title>
+  <meta name="description" content="SolarOS è la piattaforma CGA per il controllo, la gestione tecnica e il monitoraggio operativo degli impianti rinnovabili.">
+  <style>
+    :root {
+      --paper: #fbf6ee;
+      --card: #fffaf2;
+      --ink: #2a2520;
+      --muted: #776b60;
+      --line: rgba(84, 65, 50, .16);
+      --brick: #b9472d;
+      --gold: #c88a32;
+      --dark: #2a2520;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(132, 101, 72, .035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(132, 101, 72, .03) 1px, transparent 1px),
+        var(--paper);
+      background-size: 76px 76px;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 10;
+      background: rgba(255, 250, 242, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner,
+    .section-inner {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .nav-inner {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+    }
+
+    .brand img {
+      width: 116px;
+      height: 58px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #5f5146;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      padding: 12px 11px;
+    }
+
+    .nav-links a:hover {
+      color: var(--brick);
+    }
+
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--gold), var(--brick));
+    }
+
+    .btn-outline {
+      color: var(--ink);
+      border-color: rgba(84, 65, 50, .24);
+      background: rgba(255, 250, 242, .7);
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 86px;
+      display: grid;
+      align-items: end;
+      color: white;
+      position: relative;
+      background:
+        linear-gradient(90deg, rgba(42, 31, 24, .9) 0%, rgba(42, 31, 24, .66) 48%, rgba(42, 31, 24, .16) 100%),
+        linear-gradient(180deg, rgba(200, 138, 50, .24), transparent 36%),
+        url("assets/projects/electrical-row.jpeg") center / cover no-repeat;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 86px 0 0;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, .14) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, .12) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+      padding: 0 0 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 9px 13px;
+      background: rgba(185, 71, 45, .94);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 940px;
+      margin: 24px 0 22px;
+      font-size: clamp(56px, 8vw, 118px);
+      line-height: .9;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 0 0 30px;
+      color: rgba(255, 255, 255, .86);
+      font-size: clamp(18px, 1.7vw, 24px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    section {
+      padding: 96px 0;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(320px, .54fr);
+      gap: 58px;
+      align-items: start;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(42px, 5.8vw, 82px);
+      line-height: .92;
+      text-transform: uppercase;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 52px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .feature {
+      min-height: 250px;
+      padding: 28px;
+      background: var(--card);
+    }
+
+    .feature span {
+      display: inline-grid;
+      width: 48px;
+      height: 42px;
+      place-items: center;
+      margin-bottom: 28px;
+      color: white;
+      background: linear-gradient(135deg, var(--brick), var(--gold));
+      font-weight: 900;
+    }
+
+    .feature h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .access {
+      background:
+        linear-gradient(90deg, rgba(66, 45, 31, .9), rgba(66, 45, 31, .5)),
+        url("assets/projects/metlen-substation.jpeg") center / cover no-repeat;
+      color: white;
+    }
+
+    .access-card {
+      max-width: 760px;
+      padding: 44px;
+      background: rgba(255, 250, 242, .92);
+      color: var(--ink);
+      border-left: 6px solid var(--brick);
+    }
+
+    .access-card h2 {
+      font-size: clamp(34px, 4vw, 58px);
+    }
+
+    .access-card p {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    footer {
+      padding: 36px 0;
+      color: rgba(255, 250, 242, .78);
+      background: var(--dark);
+    }
+
+    .footer-inner {
+      width: min(var(--max), calc(100% - 48px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        position: sticky;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 0;
+      }
+
+      .hero-inner {
+        padding-top: 130px;
+      }
+
+      .intro,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav-inner,
+      .section-inner,
+      .hero-inner,
+      .footer-inner {
+        width: min(100% - 32px, var(--max));
+      }
+
+      h1 {
+        font-size: clamp(48px, 15vw, 74px);
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .access-card {
+        padding: 28px;
+      }
+    }
+
+    /* SolarOS product-language redesign */
+    :root {
+      --os-bg: #07110f;
+      --os-bg-2: #0d1d1a;
+      --os-panel: rgba(248, 252, 247, .92);
+      --os-ink: #13201d;
+      --os-muted: #6f7f78;
+      --os-line: rgba(36, 56, 50, .14);
+      --os-energy: #f0aa3d;
+      --os-green: #34c49a;
+      --os-red: #b9472d;
+      --os-paper: #f7f5ef;
+      --max: 1180px;
+    }
+
+    body {
+      color: var(--os-ink);
+      background:
+        radial-gradient(circle at 14% 10%, rgba(240, 170, 61, .14), transparent 28%),
+        radial-gradient(circle at 84% 2%, rgba(52, 196, 154, .13), transparent 26%),
+        linear-gradient(90deg, rgba(19, 32, 29, .045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(19, 32, 29, .035) 1px, transparent 1px),
+        var(--os-paper);
+      background-size: auto, auto, 72px 72px, 72px 72px, auto;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    .nav {
+      background: rgba(247, 245, 239, .84);
+      border-bottom-color: rgba(19, 32, 29, .12);
+      box-shadow: 0 18px 45px rgba(7, 17, 15, .08);
+    }
+
+    .brand img {
+      width: 104px;
+      filter: drop-shadow(0 8px 18px rgba(7, 17, 15, .18));
+    }
+
+    .nav-links {
+      color: rgba(19, 32, 29, .68);
+      letter-spacing: .02em;
+      text-transform: none;
+    }
+
+    .nav-links a {
+      border-radius: 8px;
+    }
+
+    .nav-links a:hover {
+      color: var(--os-bg);
+      background: rgba(52, 196, 154, .1);
+    }
+
+    .btn {
+      border-radius: 8px;
+      letter-spacing: .01em;
+      text-transform: none;
+      box-shadow: none;
+    }
+
+    .btn-primary {
+      color: #07110f;
+      background: linear-gradient(135deg, var(--os-green), var(--os-energy));
+      box-shadow: 0 18px 42px rgba(52, 196, 154, .22);
+    }
+
+    .btn-outline {
+      color: #f7f5ef;
+      border-color: rgba(247, 245, 239, .24);
+      background: rgba(247, 245, 239, .08);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero {
+      min-height: 92vh;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(7, 17, 15, .94) 0%, rgba(7, 17, 15, .74) 50%, rgba(7, 17, 15, .2) 100%),
+        linear-gradient(180deg, rgba(52, 196, 154, .2), rgba(240, 170, 61, .1) 48%, rgba(7, 17, 15, .84)),
+        url("assets/projects/electrical-row.jpeg") center / cover no-repeat;
+    }
+
+    .hero::before {
+      inset: 86px 0 0;
+      background:
+        linear-gradient(90deg, rgba(52, 196, 154, .2) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(240, 170, 61, .14) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity: .34;
+    }
+
+    .hero-inner {
+      padding-bottom: 44px;
+    }
+
+    .eyebrow {
+      border: 1px solid rgba(52, 196, 154, .3);
+      border-radius: 999px;
+      color: #dffaf0;
+      background: rgba(52, 196, 154, .14);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 22px 0 18px;
+      font-size: clamp(58px, 8vw, 112px);
+      line-height: .88;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .hero p {
+      max-width: 680px;
+      color: rgba(247, 245, 239, .82);
+      font-size: clamp(17px, 1.45vw, 22px);
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .intro {
+      align-items: end;
+      padding: 36px;
+      border: 1px solid var(--os-line);
+      border-radius: 8px;
+      background: rgba(255, 252, 246, .58);
+      box-shadow: 0 22px 70px rgba(7, 17, 15, .08);
+    }
+
+    h2 {
+      color: var(--os-ink);
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: .96;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .lead,
+    .feature p,
+    .access-card p {
+      color: var(--os-muted);
+    }
+
+    .feature-grid {
+      gap: 14px;
+      background: transparent;
+      border: 0;
+    }
+
+    .feature {
+      min-height: 230px;
+      border: 1px solid var(--os-line);
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .7), rgba(255, 255, 255, .45)),
+        rgba(248, 252, 247, .76);
+      box-shadow: 0 20px 60px rgba(7, 17, 15, .07);
+    }
+
+    .feature span {
+      border-radius: 8px;
+      color: var(--os-bg);
+      background: linear-gradient(135deg, rgba(52, 196, 154, .95), rgba(240, 170, 61, .95));
+    }
+
+    .feature h3 {
+      color: var(--os-ink);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .access {
+      background:
+        linear-gradient(90deg, rgba(7, 17, 15, .96), rgba(7, 17, 15, .72)),
+        linear-gradient(90deg, rgba(52, 196, 154, .18) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(240, 170, 61, .12) 1px, transparent 1px),
+        url("assets/projects/metlen-substation.jpeg") center / cover no-repeat;
+      background-size: auto, 64px 64px, 64px 64px, cover;
+    }
+
+    .access-card {
+      max-width: 690px;
+      border: 1px solid rgba(247, 245, 239, .16);
+      border-left: 0;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(247, 245, 239, .94), rgba(247, 245, 239, .82));
+      box-shadow: 0 28px 90px rgba(0, 0, 0, .28);
+    }
+
+    .access-card .eyebrow {
+      color: #123028;
+      background: rgba(52, 196, 154, .22);
+      border-color: rgba(52, 196, 154, .38);
+    }
+
+    footer {
+      background: var(--os-bg);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        min-height: 82vh;
+      }
+
+      .intro {
+        padding: 26px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      h1 {
+        font-size: clamp(52px, 17vw, 78px);
+      }
+
+      .hero-inner {
+        padding-top: 112px;
+      }
+    }
+
+    /* SolarOS ultra-modern interface pass */
+    :root {
+      --neo-night: #06110f;
+      --neo-forest: #0b211d;
+      --neo-panel: rgba(250, 248, 240, .78);
+      --neo-panel-strong: rgba(255, 252, 246, .92);
+      --neo-text: #101b18;
+      --neo-soft: #728079;
+      --neo-line: rgba(245, 238, 221, .14);
+      --neo-line-dark: rgba(16, 27, 24, .12);
+      --neo-green: #37d49f;
+      --neo-green-deep: #10866b;
+      --neo-amber: #f4b456;
+      --neo-cream: #f6f0e4;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      color: var(--neo-text);
+      background:
+        linear-gradient(180deg, var(--neo-night) 0, var(--neo-night) 560px, #f7f1e6 560px, #f7f1e6 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 76% 8%, rgba(244, 180, 86, .22), transparent 24%),
+        radial-gradient(circle at 18% 18%, rgba(55, 212, 159, .18), transparent 28%),
+        linear-gradient(90deg, rgba(255, 255, 255, .055) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, .045) 1px, transparent 1px);
+      background-size: auto, auto, 64px 64px, 64px 64px;
+    }
+
+    .nav {
+      position: fixed;
+      inset: 14px 18px auto;
+      width: auto;
+      border: 1px solid rgba(255, 252, 246, .16);
+      border-radius: 12px;
+      background: rgba(9, 24, 21, .72);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
+      backdrop-filter: blur(22px) saturate(1.25);
+    }
+
+    .nav-inner {
+      min-height: 70px;
+      width: min(1180px, calc(100% - 34px));
+    }
+
+    .brand img {
+      width: 92px;
+      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, .36));
+    }
+
+    .nav-links {
+      padding: 6px;
+      border: 1px solid rgba(255, 252, 246, .1);
+      border-radius: 999px;
+      color: rgba(246, 240, 228, .76);
+      background: rgba(255, 252, 246, .055);
+    }
+
+    .nav-links a {
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      color: #06110f;
+      background: linear-gradient(135deg, rgba(55, 212, 159, .96), rgba(244, 180, 86, .92));
+    }
+
+    .btn {
+      min-height: 46px;
+      border-radius: 999px;
+      letter-spacing: 0;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #04100d;
+      background: linear-gradient(135deg, var(--neo-green), var(--neo-amber));
+      box-shadow: 0 18px 45px rgba(55, 212, 159, .24);
+    }
+
+    .btn-outline {
+      color: var(--neo-cream);
+      border-color: rgba(255, 252, 246, .18);
+      background: rgba(255, 252, 246, .09);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero {
+      min-height: 100svh;
+      padding-top: 118px;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(6, 17, 15, .96) 0%, rgba(6, 17, 15, .78) 42%, rgba(6, 17, 15, .32) 100%),
+        radial-gradient(circle at 72% 18%, rgba(244, 180, 86, .26), transparent 26%),
+        radial-gradient(circle at 22% 30%, rgba(55, 212, 159, .22), transparent 28%),
+        url("assets/projects/electrical-row.jpeg") center / cover no-repeat;
+    }
+
+    .hero::before {
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(55, 212, 159, .16) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(244, 180, 86, .1) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(180deg, black 0%, transparent 88%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 22vh;
+      background: linear-gradient(180deg, transparent, #f7f1e6);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding-bottom: 58px;
+    }
+
+    .hero-inner::after {
+      content: "Asset intelligence / Field operations / Technical documents / Reporting";
+      display: block;
+      width: min(640px, 100%);
+      margin-top: 34px;
+      padding: 18px 20px;
+      border: 1px solid rgba(255, 252, 246, .14);
+      border-radius: 14px;
+      color: rgba(246, 240, 228, .72);
+      background:
+        linear-gradient(90deg, rgba(55, 212, 159, .12) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(244, 180, 86, .08) 1px, transparent 1px),
+        rgba(255, 252, 246, .07);
+      background-size: 28px 28px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .24);
+      backdrop-filter: blur(18px);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      border-radius: 999px;
+      color: #dffaf0;
+      border: 1px solid rgba(55, 212, 159, .32);
+      background: rgba(55, 212, 159, .12);
+      backdrop-filter: blur(14px);
+    }
+
+    h1 {
+      max-width: 820px;
+      color: #fffaf1;
+      font-size: clamp(70px, 10vw, 150px);
+      line-height: .82;
+      text-wrap: balance;
+    }
+
+    .hero p {
+      max-width: 740px;
+      color: rgba(246, 240, 228, .78);
+      font-size: clamp(18px, 1.55vw, 23px);
+    }
+
+    section {
+      padding: clamp(76px, 9vw, 128px) 0;
+    }
+
+    .section-inner {
+      width: min(1180px, calc(100% - 48px));
+    }
+
+    .intro {
+      gap: clamp(30px, 5vw, 72px);
+      border-color: var(--neo-line-dark);
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .74), rgba(255, 250, 239, .52));
+      box-shadow: 0 28px 90px rgba(43, 31, 20, .1);
+      backdrop-filter: blur(12px);
+    }
+
+    h2 {
+      color: var(--neo-text);
+      font-size: clamp(38px, 5.2vw, 78px);
+      line-height: .96;
+      text-wrap: balance;
+    }
+
+    .lead {
+      color: var(--neo-soft);
+      font-size: clamp(17px, 1.35vw, 21px);
+    }
+
+    .feature-grid {
+      gap: 16px;
+    }
+
+    .feature {
+      border-color: var(--neo-line-dark);
+      border-radius: 14px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(255, 250, 239, .52));
+      box-shadow: 0 24px 80px rgba(43, 31, 20, .08);
+      backdrop-filter: blur(12px);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 36px 95px rgba(43, 31, 20, .13);
+    }
+
+    .feature span {
+      color: #04100d;
+      background: linear-gradient(135deg, var(--neo-green), var(--neo-amber));
+    }
+
+    .feature p {
+      color: var(--neo-soft);
+    }
+
+    .access {
+      border-top: 1px solid rgba(255, 252, 246, .1);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(55, 212, 159, .24), transparent 26%),
+        radial-gradient(circle at 88% 16%, rgba(244, 180, 86, .2), transparent 28%),
+        linear-gradient(180deg, #0b211d, #050d0c),
+        url("assets/projects/metlen-substation.jpeg") center / cover no-repeat;
+    }
+
+    .access-card {
+      max-width: 760px;
+      border-color: rgba(255, 252, 246, .14);
+      border-radius: 18px;
+      color: var(--neo-cream);
+      background:
+        linear-gradient(90deg, rgba(6, 17, 15, .92), rgba(13, 42, 36, .78)),
+        radial-gradient(circle at 84% 8%, rgba(244, 180, 86, .26), transparent 34%);
+      box-shadow: 0 34px 100px rgba(0, 0, 0, .3);
+      backdrop-filter: blur(18px);
+    }
+
+    .access-card h2 {
+      color: #fff8e8;
+    }
+
+    .access-card p {
+      color: rgba(246, 240, 228, .72);
+    }
+
+    .access-card .eyebrow {
+      color: #dffaf0;
+      background: rgba(55, 212, 159, .12);
+    }
+
+    footer {
+      background: linear-gradient(180deg, #07110f, #030706);
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        inset: 10px;
+      }
+
+      h1 {
+        font-size: clamp(58px, 18vw, 104px);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        position: sticky;
+        inset: 0;
+        border-radius: 0;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner::after {
+        font-size: 12px;
+      }
+    }
+
+    .software-preview {
+      padding-top: clamp(52px, 7vw, 94px);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(55, 212, 159, .13), transparent 28%),
+        radial-gradient(circle at 88% 10%, rgba(244, 180, 86, .14), transparent 30%),
+        #f7f1e6;
+    }
+
+    .preview-head {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(280px, .55fr);
+      gap: clamp(24px, 5vw, 70px);
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .preview-head p {
+      margin: 0;
+      color: var(--neo-soft);
+      font-size: clamp(17px, 1.35vw, 21px);
+    }
+
+    .screen-grid {
+      display: grid;
+      grid-template-columns: 1.18fr .82fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .screen-card {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      border: 1px solid rgba(16, 27, 24, .12);
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(255, 250, 239, .52));
+      box-shadow: 0 30px 90px rgba(43, 31, 20, .11);
+    }
+
+    .screen-card.large {
+      min-height: 620px;
+    }
+
+    .screen-frame {
+      position: absolute;
+      inset: 18px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      overflow: hidden;
+      border: 1px solid rgba(255, 252, 246, .14);
+      border-radius: 14px;
+      color: #f8f2e8;
+      background: #081613;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+    }
+
+    .screen-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 252, 246, .1);
+      background: rgba(255, 252, 246, .04);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .screen-dots {
+      display: inline-flex;
+      gap: 6px;
+    }
+
+    .screen-dots i {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 252, 246, .26);
+    }
+
+    .screen-dots i:first-child {
+      background: var(--neo-green);
+    }
+
+    .screen-body {
+      position: relative;
+      min-height: 0;
+      padding: 14px;
+    }
+
+    .layout-ui {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 14px;
+      height: 100%;
+    }
+
+    .layout-side,
+    .layout-main,
+    .layout-panel {
+      border: 1px solid rgba(255, 252, 246, .09);
+      border-radius: 12px;
+      background: rgba(255, 252, 246, .055);
+    }
+
+    .layout-side {
+      display: grid;
+      align-content: start;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .layout-side span {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 252, 246, .16);
+    }
+
+    .layout-side span:nth-child(2),
+    .layout-side span:nth-child(5) {
+      background: linear-gradient(90deg, var(--neo-green), transparent);
+    }
+
+    .layout-main {
+      display: grid;
+      grid-template-rows: 1fr 120px;
+      gap: 14px;
+      padding: 14px;
+    }
+
+    .map-grid {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      background:
+        linear-gradient(90deg, rgba(55, 212, 159, .12) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(244, 180, 86, .08) 1px, transparent 1px),
+        rgba(255, 252, 246, .04);
+      background-size: 28px 28px;
+    }
+
+    .map-grid::before,
+    .map-grid::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(55, 212, 159, .92);
+      box-shadow: 0 0 26px rgba(55, 212, 159, .7);
+    }
+
+    .map-grid::before {
+      width: 12px;
+      height: 12px;
+      left: 34%;
+      top: 32%;
+    }
+
+    .map-grid::after {
+      width: 9px;
+      height: 9px;
+      left: 72%;
+      top: 58%;
+      background: var(--neo-amber);
+      box-shadow: 0 0 26px rgba(244, 180, 86, .7);
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .kpi-row div {
+      padding: 12px;
+      border: 1px solid rgba(255, 252, 246, .09);
+      border-radius: 10px;
+      background: rgba(255, 252, 246, .06);
+    }
+
+    .kpi-row strong {
+      display: block;
+      color: var(--neo-green);
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .kpi-row small {
+      color: rgba(246, 240, 228, .62);
+      font-weight: 800;
+    }
+
+    .screen-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .model-stage {
+      position: absolute;
+      inset: 54px 16px 16px;
+      overflow: hidden;
+      border-radius: 12px;
+      background:
+        linear-gradient(90deg, rgba(55, 212, 159, .12) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(244, 180, 86, .08) 1px, transparent 1px),
+        radial-gradient(circle at 50% 40%, rgba(55, 212, 159, .16), transparent 34%),
+        rgba(255, 252, 246, .04);
+      background-size: 26px 26px, 26px 26px, auto, auto;
+      perspective: 700px;
+    }
+
+    .solar-plane {
+      position: absolute;
+      left: 50%;
+      top: 47%;
+      width: 250px;
+      height: 150px;
+      transform: translate(-50%, -50%) rotateX(58deg) rotateZ(-24deg);
+      transform-style: preserve-3d;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .solar-plane i {
+      border: 1px solid rgba(223, 250, 240, .34);
+      border-radius: 4px;
+      background: linear-gradient(135deg, #1d3544, #162527);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, .28);
+    }
+
+    .axis-line {
+      position: absolute;
+      left: 18%;
+      right: 16%;
+      bottom: 20%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--neo-green), var(--neo-amber), transparent);
+      transform: rotate(-15deg);
+      box-shadow: 0 0 24px rgba(55, 212, 159, .45);
+    }
+
+    .pile-ui {
+      display: grid;
+      grid-template-columns: 1fr 118px;
+      gap: 12px;
+      height: 100%;
+    }
+
+    .pile-chart {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 252, 246, .09);
+      border-radius: 12px;
+      background:
+        linear-gradient(90deg, rgba(55, 212, 159, .1) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(244, 180, 86, .08) 1px, transparent 1px),
+        rgba(255, 252, 246, .045);
+      background-size: 24px 24px;
+    }
+
+    .pile-chart::before {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 10%;
+      bottom: 28%;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--neo-green), var(--neo-amber));
+      transform: rotate(-8deg);
+      box-shadow: 0 0 24px rgba(55, 212, 159, .4);
+    }
+
+    .pile-bars {
+      display: flex;
+      align-items: end;
+      gap: 9px;
+      height: 100%;
+      padding: 18px;
+    }
+
+    .pile-bars i {
+      width: 14px;
+      min-height: 26%;
+      border-radius: 999px 999px 2px 2px;
+      background: rgba(255, 252, 246, .16);
+    }
+
+    .pile-bars i:nth-child(2n) {
+      height: 58%;
+      background: rgba(55, 212, 159, .72);
+    }
+
+    .pile-bars i:nth-child(3n) {
+      height: 74%;
+      background: rgba(244, 180, 86, .78);
+    }
+
+    .pile-side {
+      display: grid;
+      gap: 9px;
+    }
+
+    .pile-side span {
+      border: 1px solid rgba(255, 252, 246, .09);
+      border-radius: 10px;
+      background: rgba(255, 252, 246, .055);
+    }
+
+    .screen-caption {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 28px;
+      z-index: 4;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--neo-cream);
+      pointer-events: none;
+    }
+
+    .screen-caption strong {
+      font-size: 18px;
+    }
+
+    .screen-caption span {
+      color: rgba(246, 240, 228, .68);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 980px) {
+      .preview-head,
+      .screen-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .screen-card.large {
+        min-height: 520px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .screen-frame {
+        inset: 12px;
+      }
+
+      .layout-ui,
+      .pile-ui {
+        grid-template-columns: 1fr;
+      }
+
+      .layout-side,
+      .pile-side {
+        display: none;
+      }
+
+      .screen-card,
+      .screen-card.large {
+        min-height: 430px;
+      }
+    }
+
+    /* Collapsible modern menu */
+    .nav-inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      align-items: center;
+    }
+
+    .menu-toggle {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .menu-button {
+      grid-column: 4;
+      width: 52px;
+      height: 46px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid rgba(255, 252, 246, .16);
+      border-radius: 999px;
+      background: rgba(255, 252, 246, .08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+    }
+
+    .menu-button span {
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--neo-cream);
+      transition: transform .22s ease, opacity .22s ease;
+    }
+
+    .menu-button span + span {
+      margin-top: -12px;
+    }
+
+    .menu-button em {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    .menu-toggle:checked + .menu-button span:first-child {
+      transform: translateY(5px) rotate(45deg);
+    }
+
+    .menu-toggle:checked + .menu-button span:nth-child(2) {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+
+    .nav .btn-primary {
+      grid-column: 3;
+      justify-self: end;
+      margin-right: 10px;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 100px;
+      right: 18px;
+      z-index: 50;
+      width: min(390px, calc(100vw - 36px));
+      display: grid;
+      gap: 8px;
+      padding: 18px;
+      border: 1px solid rgba(255, 252, 246, .16);
+      border-radius: 18px;
+      color: var(--neo-cream);
+      background:
+        radial-gradient(circle at 85% 8%, rgba(244, 180, 86, .18), transparent 34%),
+        linear-gradient(180deg, rgba(9, 24, 21, .94), rgba(6, 17, 15, .9));
+      box-shadow: 0 34px 100px rgba(0, 0, 0, .36);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px) scale(.98);
+      transform-origin: top right;
+      transition: opacity .22s ease, transform .22s ease;
+      backdrop-filter: blur(24px) saturate(1.25);
+    }
+
+    .nav-links::before {
+      content: "Navigazione";
+      padding: 6px 8px 10px;
+      color: rgba(246, 240, 228, .56);
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .nav-links a {
+      padding: 15px 16px;
+      border: 1px solid rgba(255, 252, 246, .08);
+      border-radius: 12px;
+      color: rgba(246, 240, 228, .88);
+      background: rgba(255, 252, 246, .055);
+      font-size: 17px;
+      font-weight: 850;
+    }
+
+    .nav-links a:hover {
+      color: #04100d;
+      background: linear-gradient(135deg, var(--neo-green), var(--neo-amber));
+    }
+
+    .menu-toggle:checked ~ .nav-links {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+      }
+
+      .nav .btn-primary {
+        min-width: 0;
+        padding-inline: 14px;
+      }
+
+      .nav-links {
+        top: 82px;
+        right: 10px;
+      }
+    }
+
+    /* Unified CGA full-page SolarOS styling */
+    body {
+      background: #030504;
+    }
+
+    body::before {
+      opacity: .28;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(244, 180, 86, .14), transparent 28%),
+        linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+      background-size: auto, 88px 88px, 88px 88px;
+    }
+
+    .nav {
+      inset: 0;
+      width: 100%;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      pointer-events: none;
+    }
+
+    .nav-inner {
+      width: min(1360px, calc(100% - 56px));
+      min-height: 0;
+      padding-top: 28px;
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      pointer-events: none;
+    }
+
+    .brand,
+    .menu-button,
+    .nav .btn-primary,
+    .nav-links {
+      pointer-events: auto;
+    }
+
+    .brand {
+      width: 138px;
+      height: 82px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 16px;
+      background: rgba(0, 0, 0, .42);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, .28);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand img {
+      width: 108px;
+      max-height: 62px;
+      object-fit: contain;
+      filter:
+        drop-shadow(0 8px 18px rgba(0, 0, 0, .7))
+        drop-shadow(0 0 10px rgba(255, 255, 255, .28));
+    }
+
+    .nav .btn-primary {
+      align-self: start;
+      min-height: 38px;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 999px;
+      color: #f7f1e6;
+      background: rgba(0, 0, 0, .34);
+      box-shadow: none;
+      backdrop-filter: blur(14px);
+    }
+
+    .menu-button {
+      align-self: start;
+      width: 44px;
+      height: 40px;
+      border-color: rgba(255, 255, 255, .16);
+      background: rgba(0, 0, 0, .34);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-links {
+      top: 82px;
+      right: 28px;
+    }
+
+    .hero {
+      min-height: 100svh;
+      padding: 0;
+      text-align: left;
+      background:
+        linear-gradient(90deg, rgba(3, 6, 5, .9) 0%, rgba(3, 6, 5, .58) 48%, rgba(3, 6, 5, .2) 100%),
+        linear-gradient(180deg, rgba(3, 6, 5, .1) 0%, rgba(3, 6, 5, .22) 58%, #030504 100%),
+        url("assets/projects/electrical-row.jpeg") center / cover no-repeat;
+    }
+
+    .hero::before {
+      opacity: .14;
+      mask-image: linear-gradient(180deg, black 0%, transparent 72%);
+    }
+
+    .hero::after {
+      background: linear-gradient(180deg, transparent, #030504);
+    }
+
+    .hero-inner {
+      width: min(1120px, calc(100% - 72px));
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding: 132px 0 82px;
+    }
+
+    .solaros-hero-logo {
+      display: block;
+      width: min(520px, 70vw);
+      max-height: 250px;
+      object-fit: contain;
+      margin: 0 0 26px;
+      filter: drop-shadow(0 20px 50px rgba(0, 0, 0, .45));
+    }
+
+    .hero .eyebrow {
+      font-size: 11px;
+      color: rgba(246, 240, 228, .68);
+      background: rgba(0, 0, 0, .24);
+    }
+
+    h1 {
+      max-width: 560px;
+      margin: 14px 0 16px;
+      color: #e8dfcf;
+      font-size: clamp(30px, 3.2vw, 46px);
+      line-height: 1.08;
+      font-weight: 720;
+    }
+
+    .hero p {
+      max-width: 680px;
+      color: rgba(246, 240, 228, .66);
+      font-size: clamp(16px, 1.08vw, 18px);
+      line-height: 1.65;
+    }
+
+    .hero-actions .btn {
+      min-height: 42px;
+      padding: 10px 17px;
+      font-size: 12px;
+    }
+
+    section,
+    .software-preview {
+      background: #030504;
+    }
+
+    .section-inner {
+      width: min(1180px, calc(100% - 56px));
+    }
+
+    .intro,
+    .feature,
+    .screen-card,
+    .access-card {
+      border-color: rgba(255, 255, 255, .12);
+      background: rgba(255, 255, 255, .045);
+      box-shadow: none;
+    }
+
+    h2,
+    .access-card h2 {
+      color: rgba(247, 241, 230, .9);
+      font-size: clamp(28px, 3.4vw, 52px);
+      line-height: 1.06;
+      font-weight: 680;
+    }
+
+    .lead,
+    .preview-head p,
+    .feature p,
+    .access-card p {
+      color: rgba(247, 241, 230, .6);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .feature h3,
+    .screen-caption strong {
+      color: rgba(247, 241, 230, .88);
+      font-size: clamp(18px, 1.55vw, 23px);
+      line-height: 1.2;
+      font-weight: 690;
+    }
+
+    .screen-caption span,
+    .screen-top,
+    .eyebrow {
+      font-size: 11px;
+    }
+
+    .screen-card.large {
+      min-height: 560px;
+    }
+
+    .screen-card {
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .screen-frame {
+      background: rgba(4, 12, 10, .92);
+    }
+
+    .access {
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      background:
+        linear-gradient(90deg, rgba(3, 6, 5, .92), rgba(3, 6, 5, .62)),
+        url("assets/projects/metlen-substation.jpeg") center / cover no-repeat;
+    }
+
+    .access-card {
+      max-width: 640px;
+      color: #f7f1e6;
+      background: rgba(0, 0, 0, .5);
+      backdrop-filter: blur(12px);
+    }
+
+    footer {
+      background: #030504;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    @media (max-width: 720px) {
+      .nav-inner {
+        width: min(100% - 28px, 1360px);
+        padding-top: 18px;
+      }
+
+      .brand {
+        width: 104px;
+        height: 66px;
+        padding: 8px 10px;
+      }
+
+      .brand img {
+        width: 84px;
+      }
+
+      .nav .btn-primary {
+        display: none;
+      }
+
+      .hero-inner {
+        width: min(100% - 32px, 1120px);
+        padding-top: 100px;
+      }
+
+      .solaros-hero-logo {
+        width: min(420px, 88vw);
+      }
+
+      h1 {
+        font-size: clamp(30px, 9vw, 42px);
+      }
+    }
+
+    /* Full-bleed split hero, no centered logo treatment */
+    .hero-inner {
+      width: min(1360px, calc(100% - 72px));
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(380px, .58fr);
+      gap: clamp(38px, 7vw, 112px);
+      align-items: end;
+      padding: 132px 0 76px;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      padding-bottom: 18px;
+    }
+
+    .solaros-hero-logo {
+      display: none;
+    }
+
+    .hero-copy h1,
+    h1 {
+      max-width: 560px;
+      margin: 16px 0;
+      color: #e8dfcf;
+      font-size: clamp(30px, 3.15vw, 46px);
+      line-height: 1.08;
+      font-weight: 720;
+      text-align: left;
+    }
+
+    .hero-copy p,
+    .hero p {
+      max-width: 610px;
+      margin: 0;
+      color: rgba(246, 240, 228, .66);
+      font-size: clamp(16px, 1.08vw, 18px);
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .hero-actions {
+      justify-content: flex-start;
+      margin-top: 26px;
+    }
+
+    .solaros-product-panel {
+      position: relative;
+      align-self: center;
+      min-height: 430px;
+      display: grid;
+      align-content: space-between;
+      gap: 18px;
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 24px;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, .055) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, .04) 1px, transparent 1px),
+        rgba(0, 0, 0, .26);
+      background-size: 34px 34px;
+      backdrop-filter: blur(10px);
+    }
+
+    .panel-logo {
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, .24);
+    }
+
+    .panel-logo img {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      max-height: 160px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
+
+    .panel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .panel-grid div {
+      min-height: 92px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, .34);
+    }
+
+    .panel-grid strong {
+      display: block;
+      color: #f7f1e6;
+      font-size: 17px;
+      line-height: 1.1;
+    }
+
+    .panel-grid span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(246, 240, 228, .58);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .panel-progress {
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .12);
+    }
+
+    .panel-progress span {
+      display: block;
+      width: 72%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--neo-green), var(--neo-amber));
+    }
+
+    @media (max-width: 920px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        align-items: end;
+        padding-top: 112px;
+      }
+
+      .solaros-product-panel {
+        width: 100%;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .hero-inner {
+        width: min(100% - 32px, 1360px);
+      }
+
+      .panel-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Distributed SolarOS hero content, no centered text blocks */
+    .hero-inner {
+      width: min(1500px, calc(100% - 88px));
+      grid-template-columns: minmax(0, .95fr) minmax(380px, .56fr);
+      grid-template-rows: 1fr auto;
+      column-gap: clamp(46px, 8vw, 140px);
+      row-gap: 28px;
+      align-items: stretch;
+      padding: 118px 0 58px;
+    }
+
+    .hero-copy {
+      max-width: none;
+      height: 100%;
+      min-height: 58svh;
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(260px, .48fr);
+      grid-template-rows: auto 1fr auto;
+      column-gap: clamp(28px, 5vw, 72px);
+      row-gap: 22px;
+      align-self: stretch;
+      padding: 0;
+    }
+
+    .hero-copy .eyebrow {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: start;
+      justify-self: start;
+    }
+
+    .hero-copy h1,
+    h1 {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: center;
+      max-width: 620px;
+      margin: 0;
+    }
+
+    .hero-copy p,
+    .hero p {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: center;
+      max-width: 380px;
+      margin: 0;
+    }
+
+    .hero-actions {
+      grid-column: 2;
+      grid-row: 3;
+      align-self: end;
+      justify-content: flex-start;
+      margin: 0;
+    }
+
+    .solaros-product-panel {
+      grid-column: 2;
+      grid-row: 1 / -1;
+      align-self: center;
+      min-height: min(58svh, 540px);
+    }
+
+    @media (max-width: 1050px) {
+      .hero-inner {
+        width: min(100% - 44px, 1500px);
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      .hero-copy {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+
+      .hero-copy .eyebrow,
+      .hero-copy h1,
+      h1,
+      .hero-copy p,
+      .hero p,
+      .hero-actions {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .hero-copy p,
+      .hero p {
+        max-width: 680px;
+      }
+
+      .solaros-product-panel {
+        grid-column: 1;
+        grid-row: auto;
+        min-height: auto;
+      }
+    }
+
+    .scada-section {
+      background:
+        radial-gradient(circle at 8% 4%, rgba(55, 212, 159, .12), transparent 30%),
+        #030504;
+    }
+
+    .scada-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .72fr) minmax(420px, .78fr);
+      gap: clamp(32px, 6vw, 92px);
+      align-items: center;
+    }
+
+    .scada-copy h2 {
+      max-width: 560px;
+    }
+
+    .scada-copy p {
+      max-width: 560px;
+      color: rgba(247, 241, 230, .62);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .scada-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .scada-list div {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 13px 14px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .045);
+    }
+
+    .scada-list strong {
+      color: #f7f1e6;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .scada-list span {
+      color: rgba(247, 241, 230, .58);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .scada-dot {
+      width: 9px;
+      height: 9px;
+      margin-top: 5px;
+      border-radius: 999px;
+      background: var(--neo-green);
+      box-shadow: 0 0 18px rgba(55, 212, 159, .55);
+    }
+
+    .scada-screen {
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 24px;
+      background: rgba(0, 0, 0, .42);
+      box-shadow: 0 34px 100px rgba(0, 0, 0, .28);
+      backdrop-filter: blur(10px);
+    }
+
+    .scada-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      color: rgba(247, 241, 230, .7);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .scada-body {
+      display: grid;
+      grid-template-columns: 1fr 160px;
+      gap: 14px;
+      min-height: 430px;
+      padding: 16px;
+      background:
+        linear-gradient(90deg, rgba(55, 212, 159, .1) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(244, 180, 86, .07) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .scada-diagram {
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 16px;
+      background: rgba(4, 12, 10, .72);
+    }
+
+    .busbar {
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      top: 24%;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--neo-green), var(--neo-amber));
+      box-shadow: 0 0 22px rgba(55, 212, 159, .34);
+    }
+
+    .feeder {
+      position: absolute;
+      top: 24%;
+      width: 2px;
+      height: 44%;
+      background: rgba(247, 241, 230, .34);
+    }
+
+    .feeder.f1 { left: 22%; }
+    .feeder.f2 { left: 38%; }
+    .feeder.f3 { left: 54%; }
+    .feeder.f4 { left: 70%; }
+
+    .device {
+      position: absolute;
+      width: 78px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 12px;
+      color: rgba(247, 241, 230, .82);
+      background: rgba(255, 255, 255, .06);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .device.inv1 { left: calc(22% - 39px); top: 64%; }
+    .device.inv2 { left: calc(38% - 39px); top: 64%; }
+    .device.cabin { left: calc(54% - 39px); top: 64%; }
+    .device.grid { left: calc(70% - 39px); top: 64%; }
+
+    .alarm {
+      position: absolute;
+      right: 22px;
+      top: 22px;
+      padding: 8px 10px;
+      border: 1px solid rgba(244, 180, 86, .28);
+      border-radius: 999px;
+      color: #f7f1e6;
+      background: rgba(244, 180, 86, .14);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .scada-side {
+      display: grid;
+      gap: 10px;
+    }
+
+    .scada-kpi {
+      padding: 13px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .055);
+    }
+
+    .scada-kpi strong {
+      display: block;
+      color: #f7f1e6;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .scada-kpi span {
+      display: block;
+      margin-top: 7px;
+      color: rgba(247, 241, 230, .55);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 980px) {
+      .scada-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .scada-body {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html" aria-label="CGA Srl">
+        <img src="assets/cga-logo-dark-bg.png" alt="CGA Srl">
+      </a>
+      <input class="menu-toggle" type="checkbox" id="solarosMenu" aria-label="Apri o chiudi il menu">
+      <label class="menu-button" for="solarosMenu" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <em>Menu</em>
+      </label>
+      <nav class="nav-links" aria-label="Navigazione SolarOS">
+        <a href="index.html">CGA</a>
+        <a href="#cos-e">Cos'è SolarOS</a>
+        <a href="#funzioni">Funzioni</a>
+        <a href="#scada">SCADA</a>
+        <a href="#anteprime">Anteprime</a>
+        <a href="#accesso">Accesso</a>
+      </nav>
+      <a class="btn btn-primary" href="#accesso">Accedi a SolarOS</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+        <span class="eyebrow">CGA Digital Platform</span>
+          <h1>SolarOS per la gestione tecnica degli impianti.</h1>
+        <p>La piattaforma operativa CGA pensata per seguire gli impianti rinnovabili lungo il loro ciclo tecnico: dati, monitoraggio, performance, documentazione e attività di campo in un unico ambiente.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#cos-e">Scopri la piattaforma</a>
+          <a class="btn btn-outline" href="#accesso">Vai all'accesso</a>
+        </div>
+        </div>
+        <div class="solaros-product-panel" aria-label="Anteprima SolarOS">
+          <div class="panel-logo">
+            <img src="assets/solaros-logo-light-bg.png" alt="SolarOS">
+          </div>
+          <div class="panel-grid">
+            <div><strong>Layout</strong><span>aree, lotti, avanzamento</span></div>
+            <div><strong>3D</strong><span>modelli, tracker, interferenze</span></div>
+            <div><strong>Pali</strong><span>battitura, quote, anomalie</span></div>
+            <div><strong>Report</strong><span>dati tecnici e documenti</span></div>
+          </div>
+          <div class="panel-progress"><span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cos-e">
+      <div class="section-inner intro">
+        <h2>Cos'è SolarOS</h2>
+        <p class="lead">SolarOS nasce per dare a CGA, partner tecnici e stakeholder una vista chiara sull'operatività degli asset: avanzamento, dati tecnici, controllo documentale e informazioni utili alla gestione EPC e O&M. Non è una pagina vetrina: è il punto di ingresso digitale all'infrastruttura di gestione degli impianti.</p>
+      </div>
+      <div class="section-inner">
+        <div id="funzioni" class="feature-grid">
+          <article class="feature">
+            <span>01</span>
+            <h3>Monitoraggio impianti</h3>
+            <p>Una vista strutturata per seguire stato, dati e performance degli asset rinnovabili.</p>
+          </article>
+          <article class="feature">
+            <span>02</span>
+            <h3>Gestione tecnica</h3>
+            <p>Supporto alle attività EPC, commissioning, O&M e revamping con informazioni organizzate.</p>
+          </article>
+          <article class="feature">
+            <span>03</span>
+            <h3>Documentazione</h3>
+            <p>Un punto di accesso per materiali tecnici, tracciabilità e documenti utili alla gestione del progetto.</p>
+          </article>
+          <article class="feature">
+            <span>04</span>
+            <h3>Reporting</h3>
+            <p>Una base dati pensata per rendere più leggibile lo stato degli asset verso team, clienti e investitori.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="scada" class="scada-section">
+      <div class="section-inner scada-layout">
+        <div class="scada-copy">
+          <span class="eyebrow">SCADA & supervisione</span>
+          <h2>Controllo tecnico degli impianti, dagli stati agli allarmi.</h2>
+          <p>SolarOS integra una vista SCADA per leggere componenti, inverter, cabine, stati di connessione, allarmi, misure e trend di produzione. La logica e operativa: il team tecnico vede subito cosa sta succedendo in campo, dove intervenire e quali dati collegare a documenti, report e attivita.</p>
+          <div class="scada-list">
+            <div><i class="scada-dot"></i><span><strong>Sinottici di impianto</strong>Schema elettrico, stati dei componenti e linee principali.</span></div>
+            <div><i class="scada-dot"></i><span><strong>Allarmi e priorita</strong>Eventi filtrati per severita, area, asset e responsabilita tecnica.</span></div>
+            <div><i class="scada-dot"></i><span><strong>Misure e performance</strong>Potenza, energia, disponibilita e confronto con le grandezze attese.</span></div>
+            <div><i class="scada-dot"></i><span><strong>Registro operativo</strong>Collegamento tra evento, nota tecnica, intervento e documentazione.</span></div>
+          </div>
+        </div>
+
+        <div class="scada-screen" aria-label="Schermata SCADA dimostrativa SolarOS">
+          <div class="scada-bar">
+            <span>SolarOS / SCADA overview</span>
+            <span>Live status</span>
+          </div>
+          <div class="scada-body">
+            <div class="scada-diagram">
+              <div class="alarm">2 warning</div>
+              <div class="busbar"></div>
+              <div class="feeder f1"></div>
+              <div class="feeder f2"></div>
+              <div class="feeder f3"></div>
+              <div class="feeder f4"></div>
+              <div class="device inv1">INV 01</div>
+              <div class="device inv2">INV 02</div>
+              <div class="device cabin">MT cabin</div>
+              <div class="device grid">Grid</div>
+            </div>
+            <div class="scada-side">
+              <div class="scada-kpi"><strong>6.8 MW</strong><span>potenza attiva</span></div>
+              <div class="scada-kpi"><strong>98.4%</strong><span>availability</span></div>
+              <div class="scada-kpi warn"><strong>2</strong><span>warning aperti</span></div>
+              <div class="scada-kpi"><strong>24h</strong><span>trend produzione</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="anteprime" class="software-preview">
+      <div class="section-inner">
+        <div class="preview-head">
+          <div>
+            <span class="eyebrow">Product preview</span>
+            <h2>Dentro SolarOS, prima dell'accesso.</h2>
+          </div>
+          <p>Tre viste pensate per spiegare subito il valore dell'applicativo: controllo del layout, visualizzazione 3D dell'impianto e monitoraggio operativo della battitura pali.</p>
+        </div>
+
+        <div class="screen-grid" aria-label="Schermate dimostrative SolarOS">
+          <article class="screen-card large">
+            <div class="screen-frame">
+              <div class="screen-top">
+                <span>SolarOS / Layout operativo</span>
+                <span class="screen-dots"><i></i><i></i><i></i></span>
+              </div>
+              <div class="screen-body">
+                <div class="layout-ui">
+                  <aside class="layout-side">
+                    <span></span><span></span><span></span><span></span><span></span><span></span>
+                  </aside>
+                  <div class="layout-main">
+                    <div class="map-grid"></div>
+                    <div class="kpi-row">
+                      <div><strong>92%</strong><small>avanzamento</small></div>
+                      <div><strong>18</strong><small>aree attive</small></div>
+                      <div><strong>4.2 MW</strong><small>lotto</small></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="screen-caption">
+              <strong>Layout impianto</strong>
+              <span>vista asset, lotti e stati operativi</span>
+            </div>
+          </article>
+
+          <div class="screen-stack">
+            <article class="screen-card">
+              <div class="screen-frame">
+                <div class="screen-top">
+                  <span>SolarOS / Vista 3D</span>
+                  <span class="screen-dots"><i></i><i></i><i></i></span>
+                </div>
+                <div class="model-stage" aria-hidden="true">
+                  <div class="solar-plane">
+                    <i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                  <div class="axis-line"></div>
+                </div>
+              </div>
+              <div class="screen-caption">
+                <strong>Modello 3D</strong>
+                <span>geometrie, tracker e interferenze</span>
+              </div>
+            </article>
+
+            <article class="screen-card">
+              <div class="screen-frame">
+                <div class="screen-top">
+                  <span>SolarOS / Battitura pali</span>
+                  <span class="screen-dots"><i></i><i></i><i></i></span>
+                </div>
+                <div class="screen-body">
+                  <div class="pile-ui">
+                    <div class="pile-chart">
+                      <div class="pile-bars">
+                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                      </div>
+                    </div>
+                    <div class="pile-side">
+                      <span></span><span></span><span></span><span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="screen-caption">
+                <strong>Battitura pali</strong>
+                <span>progressi, profondita e anomalie</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="accesso" class="access">
+      <div class="section-inner">
+        <div class="access-card">
+          <span class="eyebrow">Accesso applicativo</span>
+          <h2>Entra in SolarOS</h2>
+          <p>L'accesso è riservato agli utenti abilitati. Dopo la panoramica informativa puoi entrare direttamente nell'applicativo SolarOS.</p>
+          <a class="btn btn-primary solaros-app-link" href="https://solaros.cgasrl.it/" aria-label="Accedi all'applicativo SolarOS">Accedi a SolarOS</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <strong>CGA Srl · SolarOS</strong>
+      <span>tecnico@cgasrl.it</span>
+    </div>
+  </footer>
+  <script>
+    const SOLAROS_APP_URL = "https://solaros.cgasrl.it/";
+    document.querySelectorAll(".solaros-app-link").forEach((link) => {
+      link.href = SOLAROS_APP_URL;
+    });
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", () => {
+        const toggle = document.querySelector(".menu-toggle");
+        if (toggle) toggle.checked = false;
+      });
+    });
+  </script>
+</body>
+</html>
