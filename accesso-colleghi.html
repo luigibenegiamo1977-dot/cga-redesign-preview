@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CGA | Accesso preview sito e SolarOS</title>
+  <style>
+    :root {
+      --paper: #fbf6ee;
+      --ink: #211d19;
+      --muted: #75695f;
+      --line: rgba(84, 65, 50, .18);
+      --green: #17765b;
+      --brick: #b9472d;
+      --gold: #c88a32;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(132, 101, 72, .035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(132, 101, 72, .03) 1px, transparent 1px),
+        var(--paper);
+      background-size: 64px 64px;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.55;
+    }
+
+    main {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 56px 0;
+    }
+
+    .brand {
+      width: 170px;
+      margin-bottom: 44px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin: 0 0 18px;
+      font-size: clamp(34px, 6vw, 72px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 0 0 34px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 34px 0;
+    }
+
+    .card {
+      min-height: 280px;
+      display: grid;
+      align-content: space-between;
+      gap: 24px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 250, 242, .78);
+      box-shadow: 0 20px 60px rgba(42, 37, 32, .08);
+    }
+
+    .card strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 26px;
+      line-height: 1.05;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      color: white;
+      background: linear-gradient(135deg, var(--gold), var(--brick));
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .btn.green {
+      background: linear-gradient(135deg, #36c98f, var(--green));
+    }
+
+    .note {
+      padding: 18px 20px;
+      border: 1px solid rgba(23, 118, 91, .24);
+      border-radius: 16px;
+      background: rgba(23, 118, 91, .08);
+      color: #315044;
+      font-weight: 700;
+    }
+
+    code {
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(42, 37, 32, .08);
+    }
+
+    @media (max-width: 720px) {
+      main {
+        padding: 34px 0;
+      }
+
+      .brand {
+        width: 128px;
+        margin-bottom: 30px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 0;
+        padding: 22px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="brand" src="assets/cga-logo-light-bg.png" alt="CGA Srl">
+    <h1>Preview CGA e accesso SolarOS per il team.</h1>
+    <p class="lead">Questa pagina raccoglie i link provvisori da condividere internamente per vedere il nuovo sito CGA e accedere all'applicativo SolarOS sul server UGREEN tramite Tailscale.</p>
+
+    <div class="grid">
+      <article class="card">
+        <div>
+          <strong>Nuovo sito CGA</strong>
+          <p>Preview pubblica del sito istituzionale. Funziona anche senza Tailscale.</p>
+        </div>
+        <a class="btn" href="index.html">Apri sito CGA</a>
+      </article>
+
+      <article class="card">
+        <div>
+          <strong>SolarOS applicativo</strong>
+          <p>Accesso al software sul server UGREEN. Richiede Tailscale attivo e autorizzazione alla rete CGA.</p>
+        </div>
+        <a class="btn green" href="http://100.108.236.48:3000/login">Accedi a SolarOS</a>
+      </article>
+    </div>
+
+    <div class="note">
+      Prima di aprire SolarOS verificare che Tailscale sia connesso. Se il link non risponde, controllare di essere nella rete Tailscale CGA. URL SolarOS: <code>http://100.108.236.48:3000/login</code>
+    </div>
+  </main>
+</body>
+</html>
