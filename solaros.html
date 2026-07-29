@@ -2072,6 +2072,343 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Final responsive pass for SolarOS: split on desktop, clean flow on tablet/mobile. */
+    @media (max-width: 1180px) {
+      :root {
+        --max: 1040px;
+      }
+
+      .nav-inner,
+      .section-inner,
+      .hero-inner {
+        width: min(var(--max), calc(100% - 40px)) !important;
+      }
+
+      .hero-inner {
+        gap: 34px !important;
+      }
+
+      .hero-copy h1,
+      .hero h1 {
+        font-size: clamp(32px, 4.9vw, 60px) !important;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .screen-grid,
+      .scada-layout {
+        grid-template-columns: 1fr !important;
+      }
+
+      .screen-stack {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+    @media (max-width: 920px) {
+      body {
+        background-size: 46px 46px;
+      }
+
+      .nav {
+        position: sticky !important;
+      }
+
+      .nav-inner {
+        min-height: 72px !important;
+        grid-template-columns: auto 1fr auto !important;
+        gap: 12px !important;
+      }
+
+      .brand img {
+        width: 92px !important;
+        height: 46px !important;
+      }
+
+      .nav-inner > .btn-primary {
+        min-height: 40px !important;
+        max-width: 150px !important;
+        padding: 9px 12px !important;
+        font-size: 10px !important;
+        white-space: nowrap;
+      }
+
+      .menu-button {
+        display: inline-flex !important;
+      }
+
+      .nav-links {
+        top: 82px !important;
+        left: 20px !important;
+        right: 20px !important;
+        width: auto !important;
+        max-height: calc(100vh - 104px);
+        overflow: auto;
+      }
+
+      .hero {
+        min-height: auto !important;
+        padding: 104px 0 46px !important;
+        align-items: start !important;
+        background-position: 55% center !important;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+      }
+
+      .hero-copy {
+        display: block !important;
+        max-width: 740px !important;
+        text-align: left !important;
+      }
+
+      .hero-copy .eyebrow,
+      .hero-copy h1,
+      .hero-copy p,
+      .hero-actions {
+        max-width: 740px !important;
+        text-align: left !important;
+      }
+
+      .hero-copy h1,
+      .hero h1 {
+        margin: 14px 0 16px !important;
+        font-size: clamp(34px, 8vw, 58px) !important;
+        line-height: 1.02 !important;
+      }
+
+      .hero-copy p,
+      .hero p {
+        font-size: 17px !important;
+      }
+
+      .hero-actions {
+        grid-template-columns: 1fr 1fr !important;
+        width: min(100%, 520px);
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .solaros-product-panel {
+        width: 100% !important;
+        min-height: 0 !important;
+        padding: 18px !important;
+      }
+
+      .panel-logo img {
+        max-height: 120px !important;
+        object-fit: contain;
+      }
+
+      .panel-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      section {
+        padding: 68px 0 !important;
+      }
+
+      .intro,
+      .preview-head,
+      .scada-layout {
+        grid-template-columns: 1fr !important;
+        gap: 26px !important;
+      }
+
+      h2 {
+        font-size: clamp(32px, 7vw, 52px) !important;
+        line-height: 1.02 !important;
+      }
+
+      .lead {
+        font-size: 17px !important;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .screen-body {
+        grid-template-columns: 1fr !important;
+      }
+
+      .screen-card.large,
+      .screen-card {
+        min-height: 0 !important;
+      }
+
+      .screen-frame {
+        min-height: 320px !important;
+      }
+
+      .scada-body {
+        min-height: 0 !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      .scada-diagram {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner,
+      .section-inner,
+      .hero-inner {
+        width: calc(100% - 28px) !important;
+      }
+
+      .nav-inner {
+        min-height: 66px !important;
+      }
+
+      .brand img {
+        width: 78px !important;
+        height: 40px !important;
+      }
+
+      .menu-button {
+        width: 44px !important;
+        height: 44px !important;
+      }
+
+      .menu-button em {
+        display: none !important;
+      }
+
+      .nav-inner > .btn-primary {
+        max-width: 126px !important;
+        padding: 8px 9px !important;
+        font-size: 9px !important;
+      }
+
+      .nav-links {
+        top: 74px !important;
+        left: 14px !important;
+        right: 14px !important;
+      }
+
+      .hero {
+        padding: 86px 0 36px !important;
+      }
+
+      .hero-copy h1,
+      .hero h1 {
+        font-size: clamp(30px, 10.5vw, 44px) !important;
+      }
+
+      .hero-copy p,
+      .hero p {
+        font-size: 16px !important;
+      }
+
+      .hero-actions,
+      .feature-grid,
+      .screen-stack,
+      .panel-grid,
+      .scada-body {
+        grid-template-columns: 1fr !important;
+      }
+
+      .hero-actions .btn,
+      .access-card .btn {
+        min-height: 46px !important;
+        width: 100%;
+        padding: 11px 13px !important;
+        font-size: 12px !important;
+      }
+
+      .solaros-product-panel,
+      .feature,
+      .screen-card,
+      .access-card,
+      .scada-screen,
+      .scada-copy {
+        border-radius: 18px !important;
+      }
+
+      .solaros-product-panel {
+        padding: 14px !important;
+      }
+
+      .panel-logo {
+        padding: 12px !important;
+      }
+
+      .panel-logo img {
+        max-height: 88px !important;
+      }
+
+      section {
+        padding: 54px 0 !important;
+      }
+
+      h2 {
+        font-size: clamp(28px, 9vw, 42px) !important;
+      }
+
+      .feature,
+      .access-card {
+        padding: 20px !important;
+      }
+
+      .screen-frame {
+        min-height: 260px !important;
+        overflow: hidden;
+      }
+
+      .screen-top,
+      .scada-bar {
+        gap: 8px;
+        font-size: 9px !important;
+      }
+
+      .screen-body {
+        padding: 12px !important;
+      }
+
+      .layout-ui,
+      .pile-ui {
+        grid-template-columns: 1fr !important;
+      }
+
+      .layout-side,
+      .pile-side {
+        display: none !important;
+      }
+
+      .scada-body {
+        padding: 12px !important;
+      }
+
+      .scada-diagram {
+        min-height: 250px;
+      }
+
+      .device {
+        width: 58px !important;
+        height: 38px !important;
+        font-size: 9px !important;
+      }
+
+      .device.inv1 { left: calc(22% - 29px) !important; }
+      .device.inv2 { left: calc(38% - 29px) !important; }
+      .device.cabin { left: calc(56% - 29px) !important; }
+      .device.grid { left: calc(74% - 29px) !important; }
+
+      .footer-inner {
+        width: calc(100% - 28px) !important;
+        gap: 6px !important;
+      }
+    }
   </style>
 </head>
 <body>

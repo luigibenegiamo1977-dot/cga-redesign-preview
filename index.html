@@ -5162,6 +5162,335 @@
       z-index: 20 !important;
       pointer-events: auto !important;
     }
+    /* Final responsive pass: desktop remains unchanged, tablet/mobile get a clean layout. */
+    @media (max-width: 1180px) {
+      :root {
+        --max: 1040px;
+      }
+
+      .hero-inner,
+      .section-inner,
+      .nav-inner,
+      .topbar-inner {
+        width: min(var(--max), calc(100% - 40px)) !important;
+      }
+
+      .hero-inner {
+        gap: 34px !important;
+      }
+
+      .hero h1 {
+        font-size: clamp(34px, 5vw, 64px) !important;
+      }
+
+      .hero p {
+        font-size: 17px !important;
+      }
+
+      .service-grid,
+      .project-grid,
+      .offer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
+    @media (max-width: 920px) {
+      body {
+        background-size: 44px 44px;
+      }
+
+      .topbar {
+        display: none;
+      }
+
+      .nav {
+        position: sticky;
+      }
+
+      .nav-inner {
+        min-height: 72px !important;
+        grid-template-columns: auto 1fr auto !important;
+        gap: 12px !important;
+      }
+
+      .brand img,
+      .brand-logo,
+      .brand-mark {
+        max-width: 96px !important;
+      }
+
+      .nav-actions {
+        justify-self: end;
+      }
+
+      .nav-actions .btn-ghost {
+        display: none !important;
+      }
+
+      .nav-actions .solaros-login {
+        min-height: 40px !important;
+        max-width: 156px !important;
+        padding: 10px 12px !important;
+        font-size: 11px !important;
+        white-space: nowrap;
+      }
+
+      .menu-button {
+        display: inline-flex !important;
+      }
+
+      .nav-links,
+      .language-switcher {
+        left: 20px !important;
+        right: 20px !important;
+        width: auto !important;
+      }
+
+      .nav-links {
+        top: 82px !important;
+        max-height: calc(100vh - 108px);
+        overflow: auto;
+      }
+
+      .language-switcher {
+        top: auto !important;
+        bottom: 18px !important;
+      }
+
+      .hero {
+        min-height: auto !important;
+        padding: 104px 0 44px !important;
+        align-items: start !important;
+        background-position: 58% center !important;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+      }
+
+      .hero-copy {
+        display: block !important;
+        max-width: 720px !important;
+        padding: 0 !important;
+        text-align: left !important;
+      }
+
+      .hero h1,
+      .hero p,
+      .hero-actions,
+      .hero-copy .eyebrow {
+        max-width: 720px !important;
+        text-align: left !important;
+        justify-self: start !important;
+      }
+
+      .hero h1 {
+        margin: 14px 0 16px !important;
+        font-size: clamp(34px, 8vw, 58px) !important;
+        line-height: 1.02 !important;
+      }
+
+      .hero p {
+        margin-bottom: 22px !important;
+      }
+
+      .hero-actions {
+        grid-template-columns: 1fr 1fr !important;
+        width: min(100%, 520px);
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .hero-brand {
+        width: 100% !important;
+        min-height: 0 !important;
+        padding: 18px !important;
+        align-self: stretch !important;
+      }
+
+      .hero-photo-main,
+      .hero-photo-secondary {
+        display: none !important;
+      }
+
+      .solaros-app-logo {
+        grid-template-columns: 116px minmax(0, 1fr) !important;
+        width: calc(100% - 36px) !important;
+        max-width: calc(100% - 36px) !important;
+        margin: 0 !important;
+        transform: none !important;
+        min-height: 0 !important;
+      }
+
+      .hero-status {
+        position: static !important;
+        width: 100% !important;
+        margin-top: 14px !important;
+      }
+
+      main > section:not(.hero) {
+        padding: 68px 0 !important;
+      }
+
+      .section-head,
+      .split,
+      .contact,
+      .intro,
+      .partnership,
+      .pipeline-layout {
+        grid-template-columns: 1fr !important;
+        gap: 26px !important;
+      }
+
+      .section-head h2,
+      h2 {
+        font-size: clamp(32px, 7vw, 52px) !important;
+        line-height: 1.02 !important;
+      }
+
+      .service-grid,
+      .project-grid,
+      .offer-grid,
+      .stats,
+      .proofs {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+
+      .project img,
+      .feature-image,
+      .image-card img {
+        max-height: 360px;
+        object-fit: cover;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-inner,
+      .section-inner,
+      .nav-inner,
+      .topbar-inner {
+        width: calc(100% - 28px) !important;
+      }
+
+      .nav-inner {
+        min-height: 66px !important;
+      }
+
+      .brand img,
+      .brand-logo,
+      .brand-mark {
+        max-width: 82px !important;
+      }
+
+      .menu-button {
+        width: 44px !important;
+        height: 44px !important;
+      }
+
+      .menu-button em {
+        display: none !important;
+      }
+
+      .nav-actions .solaros-login {
+        max-width: 132px !important;
+        padding: 8px 10px !important;
+        font-size: 10px !important;
+      }
+
+      .nav-links {
+        top: 74px !important;
+        left: 14px !important;
+        right: 14px !important;
+      }
+
+      .hero {
+        padding: 86px 0 34px !important;
+      }
+
+      .hero::before,
+      .hero::after {
+        opacity: .45 !important;
+      }
+
+      .hero h1 {
+        font-size: clamp(30px, 10.6vw, 46px) !important;
+      }
+
+      .hero p {
+        font-size: 16px !important;
+      }
+
+      .hero-actions,
+      .service-grid,
+      .project-grid,
+      .offer-grid,
+      .stats,
+      .proofs,
+      .field-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .hero-actions .btn,
+      .mobile-cta .btn {
+        min-height: 46px !important;
+        padding: 11px 13px !important;
+        font-size: 12px !important;
+      }
+
+      .solaros-app-logo {
+        grid-template-columns: 1fr !important;
+        width: calc(100% - 28px) !important;
+        max-width: calc(100% - 28px) !important;
+        gap: 12px !important;
+      }
+
+      .solaros-app-logo img {
+        max-width: 190px !important;
+        justify-self: start !important;
+      }
+
+      main > section:not(.hero) {
+        padding: 54px 0 !important;
+      }
+
+      .section-head h2,
+      h2 {
+        font-size: clamp(28px, 9vw, 42px) !important;
+      }
+
+      .service-card,
+      .project,
+      .offer,
+      .step,
+      .contact-form,
+      .contact-card {
+        padding: 20px !important;
+      }
+
+      .project img,
+      .feature-image,
+      .image-card img {
+        max-height: 260px;
+      }
+
+      .mobile-cta {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+      }
+
+      footer {
+        padding-bottom: 82px !important;
+      }
+    }
   </style>
 </head>
 <body>
